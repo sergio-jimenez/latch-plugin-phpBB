@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Latch phpBB3 plugin - Integrates Latch into the phpMyAdmin authentication process.
+  Latch phpBB3 plugin - Integrates Latch into the phpBB3 authentication process.
   Copyright (C) 2013 Eleven Paths
 
   This library is free software; you can redistribute it and/or
@@ -50,12 +50,12 @@ function login_latch(&$username, &$password) {
         $login_result = $login($username, $password);
     }
 
-    if ($login_result ['status'] != LOGIN_SUCCESS || isset($_REQUEST['latch'])) {
+    if ($login_result ['status'] != LOGIN_SUCCESS || isset($_POST['latch'])) {
         return $login_result;
     }
 
-    if (isset($_REQUEST['otp']) && isset($_SESSION['token'])) {
-        if ($_REQUEST['otp'] == $_SESSION['token']) {
+    if (isset($_POST['otp']) && isset($_SESSION['token'])) {
+        if ($_POST['otp'] == $_SESSION['token']) {
             return $login_result;
         } else {
             return $login_fail;
@@ -85,16 +85,16 @@ function acp_latch(&$new) {
 
     include_once ($phpbb_root_path . "latch/LatchPersistence.php");
 
-    if (isset($_REQUEST['latch_auth_target']) && ctype_alnum($_REQUEST['latch_auth_target'])) {
-        setAuthTarget($_REQUEST['latch_auth_target']);
+    if (isset($_POST['latch_auth_target']) && ctype_alnum($_POST['latch_auth_target'])) {
+        setAuthTarget($_POST['latch_auth_target']);
     }
 
     $auth_target_latch = $config['latch_auth_target'];
 
-    if (isset($_REQUEST['latch_appId']) && isset($_REQUEST['latch_appSecret'])) {
+    if (isset($_POST['latch_appId']) && isset($_POST['latch_appSecret'])) {
 
-        $appId = $_REQUEST['latch_appId'];
-        $appSecret = $_REQUEST['latch_appSecret'];
+        $appId = $_POST['latch_appId'];
+        $appSecret = $_POST['latch_appSecret'];
 
         if (ctype_alnum($appId) && strlen($appId) == 20 && ctype_alnum($appSecret) && strlen($appSecret) == 40) {
             setApplicationConfig($appId, $appSecret);
