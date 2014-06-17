@@ -138,13 +138,13 @@ function acp_latch(&$new) {
         <dt><label for = "latch_appId"> Latch - ApplicationID:</label><br />
             <span>Application ID obtained from Latch\'s web. DON\'T change once set. </span>
         </dt>
-        <dd><input type="text" id="latch_appId" name="latch_appId" required pattern="[a-zA-Z0-9]{20}" size=40 value="' . htmlentities($new['application_id']) . '"></dd>
+        <dd><input type="text" id="latch_appId" name="latch_appId" autocomplete="off" required pattern="[a-zA-Z0-9]{20}" size=40 value="' . htmlentities($new['application_id']) . '"></dd>
     </dl>
     <dl>
         <dt><label for = "latch_appSecret"> Latch - ApplicationSecret:</label><br />
             <span>Application Secret obtained from Latch\'s web. DON\'T change once set.</span>
         </dt>
-        <dd><input type="text" id="latch_appSecret" pattern="[a-zA-Z0-9]{40}" required name="latch_appSecret" size=40 value="' . htmlentities($new['application_secret']) . '"></dd>
+        <dd><input type="text" id="latch_appSecret" autocomplete="off" pattern="[a-zA-Z0-9]{40}" required name="latch_appSecret" size=40 value="' . htmlentities($new['application_secret']) . '"></dd>
     </dl>
     ';
 
