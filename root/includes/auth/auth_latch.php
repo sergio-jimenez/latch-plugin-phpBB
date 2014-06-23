@@ -55,7 +55,10 @@ function login_latch(&$username, &$password) {
     }
 
     if (isset($_POST['otp']) && isset($_SESSION['token'])) {
-        if ($_POST['otp'] == $_SESSION['token']) {
+		$server_otp = $_SESSION['token'];
+		unset($_SESSION['token']);
+		
+        if ($_POST['otp'] == $server_otp) {
             return $login_result;
         } else {
             return $login_fail;

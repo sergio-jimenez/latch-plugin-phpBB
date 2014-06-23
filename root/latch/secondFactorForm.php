@@ -79,7 +79,7 @@ if (!defined('IN_PHPBB')) {
                 <h3>One-time password</h3>
             </div>
             <div class = "twoFactorForm">
-                <form method = "POST" action = "<?php echo (isset($_POST['credential']) ? $_POST['redirect'] : $phpbb_root_path . "ucp.php?&mode=login"); ?>">
+                <form method = "POST" action = "<?php echo (isset($_POST['credential']) ? htmlentities($_POST['redirect']) : $phpbb_root_path . "ucp.php?&mode=login"); ?>">
                     <label>Insert your one-time password:</label>
                     <input type = "text" name = "otp" id = "latchTwoFactor" />
                     <input type = "hidden" value = "<?php echo htmlentities($username) ?>" name = "username" />
